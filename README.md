@@ -1,6 +1,6 @@
 ![Screenshot](https://raw.githubusercontent.com/tomatophp/filament-plugins/master/arts/3x1io-tomato-plugins.jpg)
 
-# Filament plugins
+# Filament 插件管理系统
 
 [![Latest Stable Version](https://poser.pugx.org/tomatophp/filament-plugins/version.svg)](https://packagist.org/packages/tomatophp/filament-plugins)
 [![PHP Version Require](http://poser.pugx.org/tomatophp/filament-plugins/require/php)](https://packagist.org/packages/tomatophp/filament-plugins)
