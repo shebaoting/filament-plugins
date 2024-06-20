@@ -26,8 +26,9 @@ class PluginGenerator
     public function __construct(
         private string $name,
         private string|null $description,
-        public string|null $color = null,
-        public string|null $icon = null,
+        // public string|null $color = null,
+        // public string|null $icon = null,
+        public string|null $alias = null,
         public string|null $stubPath = null,
         public string|null $title = null,
     )

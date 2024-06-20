@@ -147,20 +147,26 @@ class Plugins extends Page implements HasTable
                     ->label(trans('filament-plugins::messages.plugins.create'))
                     ->icon('heroicon-o-plus')
                     ->form([
+                        TextInput::make('alias')->label(trans('filament-plugins::messages.plugins.form.alias'))->placeholder(trans('filament-plugins::messages.plugins.form.alias-placeholder'))->required(),
                         TextInput::make('name')
                             ->label(trans('filament-plugins::messages.plugins.form.name'))
                             ->placeholder(trans('filament-plugins::messages.plugins.form.name-placeholder'))
-                            ->required(),
+                            ->required()
+                            ->rules(['regex:/^[a-zA-Z_]+$/']),
                         Textarea::make('description')
                             ->label(trans('filament-plugins::messages.plugins.form.description'))
                             ->placeholder(trans('filament-plugins::messages.plugins.form.description-placeholder'))
                             ->required(),
-                        ColorPicker::make('color')
-                            ->label(trans('filament-plugins::messages.plugins.form.color'))
-                            ->required(),
-                        IconPicker::make('icon')
-                            ->label(trans('filament-plugins::messages.plugins.form.icon'))
+                        FileUpload::make('logo')
+                            ->label(trans('filament-plugins::messages.plugins.form.logo'))
+                            ->image()
                             ->required()
+                        // ColorPicker::make('color')
+                        //     ->label(trans('filament-plugins::messages.plugins.form.color'))
+                        //     ->required(),
+                        // IconPicker::make('icon')
+                        //     ->label(trans('filament-plugins::messages.plugins.form.icon'))
+                        //     ->required()
                     ])
                     ->action(fn (array $data) => $this->createPlugin($data)),
                 Action::make('import')
@@ -207,27 +213,60 @@ class Plugins extends Page implements HasTable
 
     public function createPlugin(array $data)
     {
-        $checkIfPluginExists = Module::find(Str::of($data['name'])->camel()->ucfirst()->toString());
-        if($checkIfPluginExists){
+        $pluginName = Str::of($data['name'])->camel()->ucfirst()->toString();
+        $checkIfPluginExists = Module::find($pluginName);
+        if ($checkIfPluginExists) {
             Notification::make()
                 ->title(trans('filament-plugins::messages.plugins.notification.exists.title'))
                 ->body(trans('filament-plugins::messages.plugins.notification.exists.body'))
                 ->danger()
                 ->send();
+            return;
         }
-
+        // Generate the plugin using PluginGenerator
         $generator = new PluginGenerator(
             $data['name'],
             $data['description'],
-            $data['color'],
-            $data['icon']
+            $data['alias']
         );
         $generator->generate();
 
-        Notification::make()
-            ->title(trans('filament-plugins::messages.plugins.notification.imported.title'))
-            ->body(trans('filament-plugins::messages.plugins.notification.imported.body'))
-            ->success()
-            ->send();
+        // Move the logo file to the plugin directory
+        if (isset($data['logo'])) {
+            // Define paths
+            $storagePath = storage_path('app/public');
+            $pluginPath = base_path('Modules/' . $pluginName);
+
+            // Ensure the plugin directory exists
+            if (!File::exists($pluginPath)) {
+                File::makeDirectory($pluginPath, 0755, true);
+            }
+
+            // Get the original logo path
+            $originalLogoPath = $storagePath . '/' . $data['logo'];
+
+            // Move and rename the logo file
+            $newLogoPath = $pluginPath . '/logo.jpg';
+
+            if (File::exists($originalLogoPath)) {
+                File::move($originalLogoPath, $newLogoPath);
+
+                Notification::make()
+                    ->title(trans('filament-plugins::messages.plugins.notification.imported.title'))
+                    ->body(trans('filament-plugins::messages.plugins.notification.imported.body'))
+                    ->success()
+                    ->send();
+            } else {
+                Notification::make()
+                    ->title(trans('filament-plugins::messages.plugins.notification.logo_failed.title'))
+                    ->body(trans('filament-plugins::messages.plugins.notification.logo_failed.body'))
+                    ->danger()
+                    ->send();
+            }
+        }
+
+        $this->js('window.location.reload()');
     }
+
+
 }

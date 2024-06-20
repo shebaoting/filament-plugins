@@ -18,7 +18,7 @@ class FilamentPluginsGenerate extends Command
      *
      * @var string
      */
-    protected $signature = 'filament-plugins:generate {name?} {description?} {icon?} {color?}';
+    protected $signature = 'filament-plugins:generate {name?} {description?} {alias?}';
 
     /**
      * The console command description.
@@ -41,20 +41,21 @@ class FilamentPluginsGenerate extends Command
     public function handle()
     {
         $name = $this->argument('name') ?? text(label: 'What is the name of the plugin?', required: true);
-        while(Module::find($name)){
+        while (Module::find($name)) {
             error('Sorry Plugin already exists.');
             $name = $this->argument('name') ?? text(label: 'What is the name of the plugin?', required: true);
         }
 
-        $description = $this->argument('description') ?? text(label: 'What is the description of the plugin?',required: true);
-        $icon = $this->argument('icon') ?? text(label: 'What is the icon of the plugin?', placeholder: 'heroicon-o-cog', required: true);
-        $color = $this->argument('color') ?? text(label: 'What is the color of the plugin?', placeholder: '#fefefe', required: true);
+        $description = $this->argument('description') ?? text(label: 'What is the description of the plugin?', required: true);
+        // $icon = $this->argument('icon') ?? text(label: 'What is the icon of the plugin?', placeholder: 'heroicon-o-cog', required: true);
+        // $color = $this->argument('color') ?? text(label: 'What is the color of the plugin?', placeholder: '#fefefe', required: true);
+        $alias = $this->argument('alias') ?? text(label: 'What is the alias of the plugin?', placeholder: '', required: true);
 
         $pluginGenerator = new PluginGenerator(
             name: $name,
             description: $description,
-            icon: $icon,
-            color: $color
+            alias: $alias
+            // color: $color
         );
         $pluginGenerator->generate();
 

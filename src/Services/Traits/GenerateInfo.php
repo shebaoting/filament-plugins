@@ -17,14 +17,16 @@ trait GenerateInfo
             $modulePath = module_path($this->name) .'/module.json';
             $module = json_decode(File::get($modulePath));
             $module->title = [];
+            $module->alias = $this->alias;
             $module->title['zh_CN'] = $this->title;
             $module->title['en'] = $this->title;
             $module->description = [];
             $module->description['zh_CN'] = $this->description;
             $module->description['en'] = $this->description;
-            $module->color = $this->color;
-            $module->icon = $this->icon;
+            // $module->color = $this->color;
+            // $module->icon = $this->icon;
             $module->placeholder = "placeholder.webp";
+            $module->logo = "logo.jpg";
             $module->type = "plugin";
             $module->version = "v1.0";
 

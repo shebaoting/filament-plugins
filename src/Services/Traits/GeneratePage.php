@@ -16,7 +16,8 @@ trait GeneratePage
                 "namespace" => "Modules\\" . $this->name . "\\Filament\\Pages",
                 "view" => $module->getLowerName()."::index",
                 "title" => $this->title,
-                "icon" => $this->icon,
+                // "icon" => $this->icon,
+                "icon" => 'heroicon-o-bell-snooze',
                 "name" => $this->name . 'Page',
             ],
             [

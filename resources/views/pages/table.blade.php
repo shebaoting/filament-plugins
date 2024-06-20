@@ -1,24 +1,24 @@
 <div class="grid grid-cols-1 md:grid-cols-3 gap-4 p-4">
     @foreach($records as $item)
-        <div class="bg-white border border-gray-100 dark:border-gray-700 overflow-hidden dark:bg-gray-800 rounded-lg flex flex-col shadow-sm" >
-
+        <div class="bg-white border border-gray-100 dark:border-gray-700 overflow-hidden dark:bg-gray-800 rounded flex flex-col shadow-sm" >
+            @php
+                $logoUrl = route('module.logo', ['module' => $item['module_name']]);
+            @endphp
             @if($item['placeholder'] !== 'placeholder.webp')
                 <div class="h-40 overflow-hidden">
                     <img class="bg-cover bg-center" onerror="this.onerror=null; this.src='{{url('placeholder.webp')}}'" src="{{$item['placeholder']}}" />
                 </div>
             @else
-                <div class="overflow-hidden flex flex-col rounded-t-lg justify-center items-center" style="background-color: {{$item['color']}}; height: 150px;">
-                    <div>
-                        <x-icon name="{{$item['icon']}}" class="text-white w-12 h-16" />
-                    </div>
+                <div class="overflow-hidden flex flex-col rounded-t-lg justify-center items-center" style="height: 150px;">
+                    <img class="bg-cover bg-center" src="{{ $logoUrl }}" />
                 </div>
             @endif
             <div class="flex justifiy-between gap-4 px-4 my-2">
                 <div class="w-full">
-                    <h1 class="font-bold">{{ json_decode($item['name'])->{app()->getLocale()} }}</h1>
+                    <h1 class="font-bold">{{ $item['alias'] }}</h1>
                 </div>
                 <div>
-                    <h1>{{ $item['version'] }}</h1>
+                    <h1 class="text-sm">{{ $item['version'] }}</h1>
                 </div>
             </div>
             <div class="h-30 px-4">

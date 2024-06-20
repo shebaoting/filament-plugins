@@ -7,13 +7,16 @@ return [
        'create' => '创建插件',
        'import' => '导入插件',
        'form' => [
-            'name' => '名称',
-            'name-placeholder' => '请输入插件名称',
+            'alias' => '插件名称',
+            'alias-placeholder' => '请输入插件名称',
+            'name' => '插件标识',
+            'name-placeholder' => '插件标识只允许输入英文字母以及下划线',
             'description' => '介绍',
             'description-placeholder' => '请详细描述这个插件的介绍',
             'icon' => '图标',
             'color' => '颜色',
             'file' => '插件压缩包',
+            'logo' => '形象图',
        ],
        'actions' => [
             'generate' => 'Generate',
