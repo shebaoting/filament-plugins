@@ -3,10 +3,10 @@
 return [
     'group' => '云市场',
     'plugins' => [
-       'title' => '插件',
-       'create' => '创建插件',
-       'import' => '导入插件',
-       'form' => [
+        'title' => '插件',
+        'create' => '创建插件',
+        'import' => '导入插件',
+        'form' => [
             'alias' => '插件名称',
             'alias-placeholder' => '请输入插件名称',
             'name' => '插件标识',
@@ -17,88 +17,88 @@ return [
             'color' => '颜色',
             'file' => '插件压缩包',
             'logo' => '形象图',
-       ],
-       'actions' => [
-            'generate' => 'Generate',
-            'active' => 'Active',
-            'disable' => 'Disable',
-            'delete' => 'Delete',
-           'github' => 'Github',
-           'docs' => 'Docs',
-       ],
+        ],
+        'actions' => [
+            'generate' => '管理',
+            'active' => '已启用',
+            'disable' => '已禁用',
+            'delete' => '删除',
+            'github' => 'Github',
+            'docs' => 'Docs',
+        ],
         'notifications' => [
             'autoload' => [
-                'title' => 'Error',
-                'body' => 'The plugin could not be activated because the class could not be found. please run composer dump-autoload on your terminal'
+                'title' => '错误',
+                'body' => '插件无法激活，因为找不到类。请在终端中运行 composer dump-autoload'
             ],
             'enabled' => [
-                'title' => 'Success',
-                'body' => 'The plugin has been activated successfully.'
+                'title' => '成功',
+                'body' => '插件已成功激活。'
             ],
             'deleted' => [
-                'title' => 'Success',
-                'body' => 'The plugin has been deleted successfully.'
+                'title' => '成功',
+                'body' => '插件已成功删除。'
             ],
             'disabled' => [
-                'title' => 'Success',
-                'body' => 'The plugin has been deactivated successfully.'
+                'title' => '成功',
+                'body' => '插件已成功停用。'
             ],
             'import' => [
-                'title' => 'Success',
-                'body' => 'The plugin has been imported successfully.'
+                'title' => '成功',
+                'body' => '插件已成功导入。'
             ]
         ]
     ],
     'tables' => [
-        'title' => 'Tables',
-        'create' => 'Create Table',
-        'edit' => 'Edit Table',
-        'columns' => 'Table Columns',
+        'title' => '数据表',
+        'create' => '创建数据表',
+        'edit' => '编辑表',
+        'columns' => '数据表字段',
         'form' => [
-            'name' => 'Name',
-            'type' => 'Type',
-            'nullable' => 'Nullable',
-            'foreign' => 'Foreign',
-            'foreign_table' => 'Foreign Table',
-            'foreign_col' => 'Foreign Column',
-            'foreign_on_delete_cascade' => 'On Delete Cascade',
-            'auto_increment' => 'Auto Increment',
-            'primary' => 'Primary',
-            'unsigned' => 'Unsigned',
-            'default' => 'Default',
-            'unique' => 'Unique',
-            'index' => 'Index',
-            'lenth' => 'Length',
-            'migrated' => 'Migrated',
-            'generated' => 'Generated',
-            'created_at' => 'Created At',
-            'updated_at' => 'Update At',
+            'name' => '表名称',
+            'type' => '类型',
+            'nullable' => '可空',
+            'foreign' => '外键',
+            'foreign_table' => '外键表',
+            'foreign_col' => '外键列',
+            'foreign_on_delete_cascade' => '删除时级联',
+            'auto_increment' => '自增',
+            'primary' => '主键',
+            'unsigned' => '无符号',
+            'default' => '默认',
+            'unique' => '唯一',
+            'index' => '索引',
+            'lenth' => '长度',
+            'migrated' => '已迁移',
+            'generated' => '已生成',
+            'created_at' => '创建时间',
+            'updated_at' => '更新时间',
         ],
         'actions' => [
-            'create' => 'Create Table',
-            'migrate' => 'Migrate',
-            'generate' => 'Generate',
-            'columns' => 'Add Column',
-            'add-id' => 'Add ID Column',
-            'add-timestamps' => 'Add Timestamps',
-            'add-softdeletes' => 'Add Soft Deletes',
+            'create' => '创建',
+            'migrate' => '迁移',
+            'generate' => '生成',
+            'columns' => '创建字段',
+            'add-id' => '创建ID字段',
+            'add-timestamps' => '创建时间字段',
+            'add-softdeletes' => '创建软删除字段',
         ],
         'notifications' => [
             'migrated' => [
-                'title' => 'Success',
-                'body' => 'The table has been migrated successfully.'
+                'title' => '成功',
+                'body' => '数据表已成功迁移。'
             ],
             'not-migrated' => [
-                'title' => 'Error',
-                'body' => 'The table could not be migrated.'
+                'title' => '错误',
+                'body' => '数据表迁移失败。'
             ],
             'generated' => [
-                'title' => 'Success',
-                'body' => 'The table has been generated successfully.'
+                'title' => '成功',
+                'body' => '数据表已成功生成。'
             ],
             'model' => [
-                'title' => 'Error',
-                'body' => 'The model could not be found generate it first.'
+                'title' => '错误',
+                'body' => '找不到模型，请先生成模型。'
             ]
         ]
     ]

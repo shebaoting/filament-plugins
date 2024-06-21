@@ -59,6 +59,7 @@ class TableColsRelationManager extends RelationManager
                     ->default(255)
                     ->maxLength(255),
                 Forms\Components\TextInput::make('default')
+                     ->label(trans('filament-plugins::messages.tables.form.default'))
                     ->maxLength(255),
                 Forms\Components\Toggle::make('nullable')
                     ->label(trans('filament-plugins::messages.tables.form.nullable'))

@@ -13,6 +13,6 @@ return [
 
     'database_prefix' => null,
 
-    'scan' => true
+    'scan' => true,
 ];
 

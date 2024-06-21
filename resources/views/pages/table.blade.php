@@ -18,7 +18,7 @@
                     <h1 class="font-bold">{{ $item['alias'] }}</h1>
                 </div>
                 <div>
-                    <h1 class="text-sm">{{ $item['version'] }}</h1>
+                    <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">{{ $item['version'] }}</span>
                 </div>
             </div>
             <div class="h-30 px-4">
