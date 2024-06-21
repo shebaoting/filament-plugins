@@ -20,8 +20,8 @@ return [
         ],
         'actions' => [
             'generate' => '管理',
-            'active' => '已启用',
-            'disable' => '已禁用',
+            'active' => '启用',
+            'disable' => '禁用',
             'delete' => '删除',
             'github' => 'Github',
             'docs' => 'Docs',

@@ -66,6 +66,7 @@ class Plugins extends Page implements HasTable
     public function disableAction(): Action
     {
         return Action::make('disable')
+            ->modalHeading('禁用插件?')
             ->iconButton()
             ->icon('heroicon-s-x-circle')
             ->color('danger')
@@ -88,6 +89,7 @@ class Plugins extends Page implements HasTable
     public function deleteAction(): Action
     {
         return Action::make('delete')
+            ->modalHeading('删除插件?')
             ->iconButton()
             ->icon('heroicon-s-trash')
             ->color('danger')
@@ -111,6 +113,7 @@ class Plugins extends Page implements HasTable
     public function activeAction(): Action
     {
         return Action::make('active')
+            ->modalHeading('启用插件?')
             ->iconButton()
             ->icon('heroicon-s-check-circle')
             ->tooltip(trans('filament-plugins::messages.plugins.actions.active'))
