@@ -3,7 +3,7 @@
 namespace Shebaoting\FilamentPlugins\Console;
 
 use Illuminate\Console\Command;
-use Shebaoting\ConsoleHelpers\Traits\RunCommand;
+use TomatoPHP\ConsoleHelpers\Traits\RunCommand;
 
 class FilamentPluginsInstall extends Command
 {

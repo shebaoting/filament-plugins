@@ -16,7 +16,7 @@ use Shebaoting\FilamentPlugins\Services\Concerns\GenerateMenus;
 use Shebaoting\FilamentPlugins\Services\Concerns\GenerateMigrations;
 use Shebaoting\FilamentPlugins\Services\Concerns\GenerateRules;
 use Shebaoting\FilamentPlugins\Settings\BuilderSettings;
-use Shebaoting\ConsoleHelpers\Traits\HandleStub;
+use TomatoPHP\ConsoleHelpers\Traits\HandleStub;
 use Shebaoting\FilamentPlugins\Services\Concerns\GenerateCols;
 use Shebaoting\FilamentPlugins\Services\Concerns\GenerateController;
 use Shebaoting\FilamentPlugins\Services\Concerns\GenerateCreateView;

@@ -5,7 +5,7 @@ namespace Shebaoting\FilamentPlugins\Console;
 use Illuminate\Console\Command;
 use Illuminate\Support\Str;
 use Nwidart\Modules\Facades\Module;
-use Shebaoting\ConsoleHelpers\Traits\RunCommand;
+use TomatoPHP\ConsoleHelpers\Traits\RunCommand;
 use Shebaoting\FilamentPlugins\Services\CRUDGenerator;
 use Shebaoting\FilamentPlugins\Services\PluginGenerator;
 use function Laravel\Prompts\confirm;
