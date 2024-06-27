@@ -17,10 +17,12 @@ Manage your modules as a plugin system with plugin generator
 ![Create Col](https://raw.githubusercontent.com/tomatophp/filament-plugins/master/arts/create-col.png)
 ![Table cols](https://raw.githubusercontent.com/tomatophp/filament-plugins/master/arts/table-cols.png)
 
+> #### 这个扩展修改自 https://github.com/tomatophp/filament-plugins 非常感谢原作者，由于国内外对于插件体验的需求差异太大，所以我在做了大量的修改以后，没有提PR，而是直接作为一个新的扩展发布。原则上，这个扩展也只是满足我自己使用。
+
 ## Installation
 
 ```bash
-composer require tomatophp/filament-plugins
+composer require shebaoting/filament-plugins
 ```
 after install your package please run this command
 
