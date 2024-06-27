@@ -1,8 +1,8 @@
 <?php
 
-namespace TomatoPHP\FilamentPlugins\Resources\TableResource\Pages;
+namespace Shebaoting\FilamentPlugins\Resources\TableResource\Pages;
 
-use TomatoPHP\FilamentPlugins\Resources\TableResource;
+use Shebaoting\FilamentPlugins\Resources\TableResource;
 use Filament\Actions;
 use Filament\Resources\Pages\CreateRecord;
 

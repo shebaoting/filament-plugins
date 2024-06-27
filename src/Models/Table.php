@@ -1,9 +1,9 @@
 <?php
 
-namespace TomatoPHP\FilamentPlugins\Models;
+namespace Shebaoting\FilamentPlugins\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use TomatoPHP\FilamentPlugins\Services\CRUDGenerator;
+use Shebaoting\FilamentPlugins\Services\CRUDGenerator;
 
 /**
  * @property integer $id
@@ -38,7 +38,7 @@ class Table extends Model
      */
     public function tableCols()
     {
-        return $this->hasMany('TomatoPHP\FilamentPlugins\Models\TableCol');
+        return $this->hasMany('Shebaoting\FilamentPlugins\Models\TableCol');
     }
 
     public function migrate()

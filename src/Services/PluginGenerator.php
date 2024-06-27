@@ -1,17 +1,17 @@
 <?php
 
-namespace TomatoPHP\FilamentPlugins\Services;
+namespace Shebaoting\FilamentPlugins\Services;
 
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
-use TomatoPHP\ConsoleHelpers\Traits\HandleFiles;
-use TomatoPHP\ConsoleHelpers\Traits\HandleStub;
-use TomatoPHP\FilamentPlugins\Services\Traits\GeneratePage;
-use TomatoPHP\FilamentPlugins\Services\Traits\MoveFiles;
-use TomatoPHP\TomatoSettings\Settings\ThemesSettings;
-use TomatoPHP\FilamentPlugins\Services\Traits\GenerateInfo;
-use TomatoPHP\FilamentPlugins\Services\Traits\GenerateModule;
-use TomatoPHP\FilamentPlugins\Services\Traits\GenerateReadMe;
+use Shebaoting\ConsoleHelpers\Traits\HandleFiles;
+use Shebaoting\ConsoleHelpers\Traits\HandleStub;
+use Shebaoting\FilamentPlugins\Services\Traits\GeneratePage;
+use Shebaoting\FilamentPlugins\Services\Traits\MoveFiles;
+use Shebaoting\TomatoSettings\Settings\ThemesSettings;
+use Shebaoting\FilamentPlugins\Services\Traits\GenerateInfo;
+use Shebaoting\FilamentPlugins\Services\Traits\GenerateModule;
+use Shebaoting\FilamentPlugins\Services\Traits\GenerateReadMe;
 
 class PluginGenerator
 {

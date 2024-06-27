@@ -1,13 +1,13 @@
 <?php
 
-namespace TomatoPHP\FilamentPlugins\Models;
+namespace Shebaoting\FilamentPlugins\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 use Nwidart\Modules\Facades\Module;
 use Sushi\Sushi;
-use TomatoPHP\FilamentPlugins\Facades\FilamentPlugins;
+use Shebaoting\FilamentPlugins\Facades\FilamentPlugins;
 
 class Plugin extends Model
 {

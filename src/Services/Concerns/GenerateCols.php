@@ -1,11 +1,11 @@
 <?php
 
-namespace TomatoPHP\FilamentPlugins\Services\Concerns;
+namespace Shebaoting\FilamentPlugins\Services\Concerns;
 
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Str;
-use TomatoPHP\FilamentPlugins\Models\Table;
-use TomatoPHP\FilamentPlugins\Models\TableCol;
+use Shebaoting\FilamentPlugins\Models\Table;
+use Shebaoting\FilamentPlugins\Models\TableCol;
 
 trait GenerateCols
 {

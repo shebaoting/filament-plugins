@@ -7,14 +7,14 @@ namespace Composer\Autoload;
 class ComposerStaticInitc4e002f7e0de6de3f34ab3da969c521f
 {
     public static $prefixLengthsPsr4 = array (
-        'T' => 
+        'T' =>
         array (
-            'TomatoPHP\\FilamentPlugins\\' => 26,
+            'Shebaoting\\FilamentPlugins\\' => 26,
         ),
     );
 
     public static $prefixDirsPsr4 = array (
-        'TomatoPHP\\FilamentPlugins\\' => 
+        'Shebaoting\\FilamentPlugins\\' =>
         array (
             0 => __DIR__ . '/../..' . '/src',
         ),

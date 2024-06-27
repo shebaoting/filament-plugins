@@ -1,6 +1,6 @@
 <?php
 
-namespace TomatoPHP\FilamentPlugins;
+namespace Shebaoting\FilamentPlugins;
 
 use Filament\Contracts\Plugin;
 use Filament\Panel;
@@ -8,8 +8,8 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 use Illuminate\View\View;
 use Nwidart\Modules\Facades\Module;
-use TomatoPHP\FilamentPlugins\Pages\Plugins;
-use TomatoPHP\FilamentPlugins\Resources\TableResource;
+use Shebaoting\FilamentPlugins\Pages\Plugins;
+use Shebaoting\FilamentPlugins\Resources\TableResource;
 
 class FilamentPluginsPlugin implements Plugin
 {
@@ -26,7 +26,7 @@ class FilamentPluginsPlugin implements Plugin
 
     public function register(Panel $panel): void
     {
-        $plugins = \TomatoPHP\FilamentPlugins\Models\Plugin::all();
+        $plugins = \Shebaoting\FilamentPlugins\Models\Plugin::all();
         $useClusters = config('filament-plugins.clusters.enabled', false);
         if(!count($this->modules) && $this->autoDiscoverModules){
             $this->modules = Module::all();

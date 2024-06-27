@@ -1,6 +1,6 @@
 <?php
 
-namespace TomatoPHP\FilamentPlugins\Services;
+namespace Shebaoting\FilamentPlugins\Services;
 
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\DriverManager;
@@ -8,29 +8,29 @@ use Doctrine\DBAL\Exception;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Str;
-use TomatoPHP\FilamentPlugins\Models\Table;
-use TomatoPHP\FilamentPlugins\Services\Concerns\GenerateCasts;
-use TomatoPHP\FilamentPlugins\Services\Concerns\InjectString;
-use TomatoPHP\FilamentPlugins\Services\Concerns\GenerateJsonResource;
-use TomatoPHP\FilamentPlugins\Services\Concerns\GenerateMenus;
-use TomatoPHP\FilamentPlugins\Services\Concerns\GenerateMigrations;
-use TomatoPHP\FilamentPlugins\Services\Concerns\GenerateRules;
-use TomatoPHP\FilamentPlugins\Settings\BuilderSettings;
-use TomatoPHP\ConsoleHelpers\Traits\HandleStub;
-use TomatoPHP\FilamentPlugins\Services\Concerns\GenerateCols;
-use TomatoPHP\FilamentPlugins\Services\Concerns\GenerateController;
-use TomatoPHP\FilamentPlugins\Services\Concerns\GenerateCreateView;
-use TomatoPHP\FilamentPlugins\Services\Concerns\GenerateEditView;
-use TomatoPHP\FilamentPlugins\Services\Concerns\GenerateFolders;
-use TomatoPHP\FilamentPlugins\Services\Concerns\GenerateForm;
-use TomatoPHP\FilamentPlugins\Services\Concerns\GenerateFormView;
-use TomatoPHP\FilamentPlugins\Services\Concerns\GenerateIndexView;
-use TomatoPHP\FilamentPlugins\Services\Concerns\GenerateModel;
-use TomatoPHP\FilamentPlugins\Services\Concerns\GenerateRoutes;
-use TomatoPHP\FilamentPlugins\Services\Concerns\GenerateShowView;
-use TomatoPHP\FilamentPlugins\Services\Concerns\GenerateTable;
-use TomatoPHP\FilamentPlugins\Services\Concerns\GenerateRequest;
-use TomatoPHP\TomatoForms\Models\Form;
+use Shebaoting\FilamentPlugins\Models\Table;
+use Shebaoting\FilamentPlugins\Services\Concerns\GenerateCasts;
+use Shebaoting\FilamentPlugins\Services\Concerns\InjectString;
+use Shebaoting\FilamentPlugins\Services\Concerns\GenerateJsonResource;
+use Shebaoting\FilamentPlugins\Services\Concerns\GenerateMenus;
+use Shebaoting\FilamentPlugins\Services\Concerns\GenerateMigrations;
+use Shebaoting\FilamentPlugins\Services\Concerns\GenerateRules;
+use Shebaoting\FilamentPlugins\Settings\BuilderSettings;
+use Shebaoting\ConsoleHelpers\Traits\HandleStub;
+use Shebaoting\FilamentPlugins\Services\Concerns\GenerateCols;
+use Shebaoting\FilamentPlugins\Services\Concerns\GenerateController;
+use Shebaoting\FilamentPlugins\Services\Concerns\GenerateCreateView;
+use Shebaoting\FilamentPlugins\Services\Concerns\GenerateEditView;
+use Shebaoting\FilamentPlugins\Services\Concerns\GenerateFolders;
+use Shebaoting\FilamentPlugins\Services\Concerns\GenerateForm;
+use Shebaoting\FilamentPlugins\Services\Concerns\GenerateFormView;
+use Shebaoting\FilamentPlugins\Services\Concerns\GenerateIndexView;
+use Shebaoting\FilamentPlugins\Services\Concerns\GenerateModel;
+use Shebaoting\FilamentPlugins\Services\Concerns\GenerateRoutes;
+use Shebaoting\FilamentPlugins\Services\Concerns\GenerateShowView;
+use Shebaoting\FilamentPlugins\Services\Concerns\GenerateTable;
+use Shebaoting\FilamentPlugins\Services\Concerns\GenerateRequest;
+use Shebaoting\TomatoForms\Models\Form;
 
 class CRUDGenerator
 {
@@ -100,7 +100,7 @@ class CRUDGenerator
             $this->moduleName = $this->table->module;
         }
         $this->modelName = Str::ucfirst(Str::singular(Str::camel($this->tableName)));
-        $this->stubPath = base_path('vendor/tomatophp/filament-plugins/stubs') . "/";
+        $this->stubPath = base_path('vendor/shebaoting/filament-plugins/stubs') . "/";
         $this->cols = $this->getCols();
     }
 

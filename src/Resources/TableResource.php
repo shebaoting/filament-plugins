@@ -1,15 +1,15 @@
 <?php
 
-namespace TomatoPHP\FilamentPlugins\Resources;
+namespace Shebaoting\FilamentPlugins\Resources;
 
 use Filament\Notifications\Notification;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Schema;
 use Nwidart\Modules\Facades\Module;
-use TomatoPHP\FilamentPlugins\Resources\TableResource\Pages;
-use TomatoPHP\FilamentPlugins\Resources\TableResource\RelationManagers;
-use TomatoPHP\FilamentPlugins\Models\Table as TableModel;
+use Shebaoting\FilamentPlugins\Resources\TableResource\Pages;
+use Shebaoting\FilamentPlugins\Resources\TableResource\RelationManagers;
+use Shebaoting\FilamentPlugins\Models\Table as TableModel;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -17,7 +17,7 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
-use TomatoPHP\FilamentPlugins\Services\CRUDGenerator;
+use Shebaoting\FilamentPlugins\Services\CRUDGenerator;
 
 class TableResource extends Resource
 {

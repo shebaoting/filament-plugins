@@ -1,11 +1,11 @@
 <?php
 
-namespace TomatoPHP\FilamentPlugins\Console;
+namespace Shebaoting\FilamentPlugins\Console;
 
 use Illuminate\Console\Command;
 use Nwidart\Modules\Facades\Module;
-use TomatoPHP\ConsoleHelpers\Traits\RunCommand;
-use TomatoPHP\FilamentPlugins\Services\PluginGenerator;
+use Shebaoting\ConsoleHelpers\Traits\RunCommand;
+use Shebaoting\FilamentPlugins\Services\PluginGenerator;
 use function Laravel\Prompts\error;
 use function Laravel\Prompts\text;
 

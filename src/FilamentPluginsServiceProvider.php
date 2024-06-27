@@ -1,6 +1,6 @@
 <?php
 
-namespace TomatoPHP\FilamentPlugins;
+namespace Shebaoting\FilamentPlugins;
 
 use Illuminate\Foundation\Application;
 use Illuminate\Support\ServiceProvider;
@@ -13,12 +13,12 @@ class FilamentPluginsServiceProvider extends ServiceProvider
     {
         //Register generate command
         $this->commands([
-           \TomatoPHP\FilamentPlugins\Console\FilamentPluginsInstall::class,
-           \TomatoPHP\FilamentPlugins\Console\FilamentPageGenerate::class,
-           \TomatoPHP\FilamentPlugins\Console\FilamentResourceGenerate::class,
-           \TomatoPHP\FilamentPlugins\Console\FilamentWidgetGenerate::class,
-           \TomatoPHP\FilamentPlugins\Console\FilamentPluginsGenerate::class,
-           \TomatoPHP\FilamentPlugins\Console\FilamentPluginsModel::class,
+           \Shebaoting\FilamentPlugins\Console\FilamentPluginsInstall::class,
+           \Shebaoting\FilamentPlugins\Console\FilamentPageGenerate::class,
+           \Shebaoting\FilamentPlugins\Console\FilamentResourceGenerate::class,
+           \Shebaoting\FilamentPlugins\Console\FilamentWidgetGenerate::class,
+           \Shebaoting\FilamentPlugins\Console\FilamentPluginsGenerate::class,
+           \Shebaoting\FilamentPlugins\Console\FilamentPluginsModel::class,
         ]);
 
         //Register Config file

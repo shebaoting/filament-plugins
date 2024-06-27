@@ -1,6 +1,6 @@
 <?php
 
-namespace TomatoPHP\FilamentPlugins\Services\Traits;
+namespace Shebaoting\FilamentPlugins\Services\Traits;
 
 use Illuminate\Support\Str;
 

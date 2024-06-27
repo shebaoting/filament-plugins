@@ -1,13 +1,13 @@
 <?php
 
-namespace TomatoPHP\FilamentPlugins\Console;
+namespace Shebaoting\FilamentPlugins\Console;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Str;
 use Nwidart\Modules\Facades\Module;
-use TomatoPHP\ConsoleHelpers\Traits\RunCommand;
-use TomatoPHP\FilamentPlugins\Services\CRUDGenerator;
-use TomatoPHP\FilamentPlugins\Services\PluginGenerator;
+use Shebaoting\ConsoleHelpers\Traits\RunCommand;
+use Shebaoting\FilamentPlugins\Services\CRUDGenerator;
+use Shebaoting\FilamentPlugins\Services\PluginGenerator;
 use function Laravel\Prompts\confirm;
 use function Laravel\Prompts\error;
 use function Laravel\Prompts\search;

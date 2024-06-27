@@ -52,7 +52,7 @@ composer dump-autoload
 finally reigster the plugin on `/app/Providers/Filament/AdminPanelProvider.php`
 
 ```php
-->plugin(\TomatoPHP\FilamentPlugins\FilamentPluginsPlugin::make())
+->plugin(\Shebaoting\FilamentPlugins\FilamentPluginsPlugin::make())
 ```
 
 ## Usage
@@ -97,7 +97,7 @@ you can list your package on the plugins list by adding this a json file in your
     "keywords": [],
     "priority": 0,
     "providers": [
-        "TomatoPHP\\FilamentAccounts\\FilamentAccountsServiceProvider"
+        "Shebaoting\\FilamentAccounts\\FilamentAccountsServiceProvider"
     ],
     "files": [],
     "title": {
@@ -127,7 +127,7 @@ make sure you allow packages scan on the `filament-plugins.php` config file
 you can use the selected module in your panel by using this code in your PanelProvider
 
 ```php
-->plugin(\TomatoPHP\FilamentPlugins\FilamentPluginsPlugin::make()->modules([
+->plugin(\Shebaoting\FilamentPlugins\FilamentPluginsPlugin::make()->modules([
     'CRM'
 ]))
 ```
@@ -139,7 +139,7 @@ so you will see only the selected modules in your panel
 on any plugin you can create a Page/Resource/Widget for selected panel, so if you need to showup only the current panel Page/Resources/Widgets you can use this code in your PanelProvider
 
 ```php
-->plugin(\TomatoPHP\FilamentPlugins\FilamentPluginsPlugin::make()->discoverCurrentPanelOnly())
+->plugin(\Shebaoting\FilamentPlugins\FilamentPluginsPlugin::make()->discoverCurrentPanelOnly())
 ```
 
 ## Stop Auto Discover Module Resources
@@ -147,7 +147,7 @@ on any plugin you can create a Page/Resource/Widget for selected panel, so if yo
 you can stop auto-load module resources by using this code in your PanelProvider
 
 ```php
-->plugin(\TomatoPHP\FilamentPlugins\FilamentPluginsPlugin::make()->autoDiscoverModules(false))
+->plugin(\Shebaoting\FilamentPlugins\FilamentPluginsPlugin::make()->autoDiscoverModules(false))
 ```
 
 ## Stop Using Plugins UI
@@ -155,7 +155,7 @@ you can stop auto-load module resources by using this code in your PanelProvider
 you can stop using the plugins UI by using this code in your PanelProvider
 
 ```php
-->plugin(\TomatoPHP\FilamentPlugins\FilamentPluginsPlugin::make()->useUI(false))
+->plugin(\Shebaoting\FilamentPlugins\FilamentPluginsPlugin::make()->useUI(false))
 ```
 
 ## Publish Assets

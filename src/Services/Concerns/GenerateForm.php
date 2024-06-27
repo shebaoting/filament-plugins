@@ -1,6 +1,6 @@
 <?php
 
-namespace TomatoPHP\FilamentPlugins\Services\Concerns;
+namespace Shebaoting\FilamentPlugins\Services\Concerns;
 
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Str;

@@ -1,6 +1,6 @@
 <?php
 
-namespace TomatoPHP\FilamentPlugins\Pages;
+namespace Shebaoting\FilamentPlugins\Pages;
 
 use Composer\Autoload\ClassLoader;
 use Filament\Actions\Action;
@@ -21,9 +21,9 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 use Livewire\Livewire;
 use Nwidart\Modules\Facades\Module;
-use TomatoPHP\FilamentIcons\Components\IconPicker;
-use TomatoPHP\FilamentPlugins\Models\Plugin;
-use TomatoPHP\FilamentPlugins\Services\PluginGenerator;
+use Shebaoting\FilamentIcons\Components\IconPicker;
+use Shebaoting\FilamentPlugins\Models\Plugin;
+use Shebaoting\FilamentPlugins\Services\PluginGenerator;
 
 class Plugins extends Page implements HasTable
 {

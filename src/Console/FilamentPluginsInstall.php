@@ -1,9 +1,9 @@
 <?php
 
-namespace TomatoPHP\FilamentPlugins\Console;
+namespace Shebaoting\FilamentPlugins\Console;
 
 use Illuminate\Console\Command;
-use TomatoPHP\ConsoleHelpers\Traits\RunCommand;
+use Shebaoting\ConsoleHelpers\Traits\RunCommand;
 
 class FilamentPluginsInstall extends Command
 {

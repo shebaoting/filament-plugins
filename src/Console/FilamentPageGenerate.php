@@ -1,6 +1,6 @@
 <?php
 
-namespace TomatoPHP\FilamentPlugins\Console;
+namespace Shebaoting\FilamentPlugins\Console;
 
 use Coolsam\Modules\Facades\FilamentModules;
 use Filament\Clusters\Cluster;

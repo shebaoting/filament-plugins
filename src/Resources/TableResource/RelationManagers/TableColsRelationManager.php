@@ -1,6 +1,6 @@
 <?php
 
-namespace TomatoPHP\FilamentPlugins\Resources\TableResource\RelationManagers;
+namespace Shebaoting\FilamentPlugins\Resources\TableResource\RelationManagers;
 
 use Filament\Actions\Action;
 use Filament\Actions\ActionGroup;

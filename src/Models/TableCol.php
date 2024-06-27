@@ -1,6 +1,6 @@
 <?php
 
-namespace TomatoPHP\FilamentPlugins\Models;
+namespace Shebaoting\FilamentPlugins\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -52,7 +52,7 @@ class TableCol extends Model
      */
     public function table()
     {
-        return $this->belongsTo('TomatoPHP\FilamentPlugins\Models\Table');
+        return $this->belongsTo('Shebaoting\FilamentPlugins\Models\Table');
     }
 
     public function getTable()
