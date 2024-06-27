@@ -1,5 +1,5 @@
 {
-    "name": "Shebaoting/filament-plugins",
+    "name": "shebaoting/filament-plugins",
     "type": "library",
     "description": "Manage your modules as a plugin system with plugin generator",
     "keywords": [
@@ -38,11 +38,10 @@
     ],
     "require": {
         "php": "^8.1|^8.2",
-        "Shebaoting/console-helpers": "^1.1",
+        "tomatophp/console-helpers": "^1.1",
         "filament/filament": "^3.0.0",
         "filament/notifications": "^3.0.0",
         "nwidart/laravel-modules": "^11.0",
-        "Shebaoting/filament-icons": "^1.0",
         "calebporzio/sushi": "*"
     }
 }
