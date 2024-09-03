@@ -18,14 +18,14 @@ class FilamentPluginsGenerate extends Command
      *
      * @var string
      */
-    protected $signature = 'filament-plugins:generate {name?} {description?} {icon?} {color?}';
+    protected $signature = 'filament-plugins:generate {identifier?} {name?} {description?}';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'generate a new plugin';
+    protected $description = '生成一个新的插件';
 
     public function __construct()
     {
@@ -40,24 +40,21 @@ class FilamentPluginsGenerate extends Command
      */
     public function handle()
     {
-        $name = $this->argument('name') ?? text(label: 'What is the name of the plugin?', required: true);
-        while (Module::find($name)) {
-            error('Sorry Plugin already exists.');
-            $name = $this->argument('name') ?? text(label: 'What is the name of the plugin?', required: true);
+        $identifier = $this->argument('identifier') ?? text(label: '插件的标识是什么？', required: true);
+        while (Module::find($identifier)) {
+            error('抱歉，该插件标识已存在。');
+            $identifier = $this->argument('identifier') ?? text(label: '插件的标识是什么？', required: true);
         }
 
-        $description = $this->argument('description') ?? text(label: 'What is the description of the plugin?', required: true);
-        $icon = $this->argument('icon') ?? text(label: 'What is the icon of the plugin?', placeholder: 'heroicon-o-cog', required: true);
-        $color = $this->argument('color') ?? text(label: 'What is the color of the plugin?', placeholder: '#fefefe', required: true);
-
+        $name = $this->argument('name') ?? text(label: '插件的名称是什么？', required: true);
+        $description = $this->argument('description') ?? text(label: '插件的描述是什么？', required: true);
         $pluginGenerator = new PluginGenerator(
             name: $name,
+            identifier: $identifier,
             description: $description,
-            icon: $icon,
-            color: $color
         );
         $pluginGenerator->generate();
 
-        $this->info('Plugin generated successfully.');
+        $this->info('插件生成成功。');
     }
 }

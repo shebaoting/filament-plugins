@@ -21,7 +21,6 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 use Livewire\Livewire;
 use Nwidart\Modules\Facades\Module;
-use TomatoPHP\FilamentIcons\Components\IconPicker;
 use Shebaoting\FilamentPlugins\Models\Plugin;
 use Shebaoting\FilamentPlugins\Services\PluginGenerator;
 
@@ -150,15 +149,19 @@ class Plugins extends Page implements HasTable
                             ->label(trans('filament-plugins::messages.plugins.form.name'))
                             ->placeholder(trans('filament-plugins::messages.plugins.form.name-placeholder'))
                             ->required(),
+                        TextInput::make('identifier')
+                            ->label(trans('filament-plugins::messages.plugins.form.identifier'))
+                            ->placeholder(trans('filament-plugins::messages.plugins.form.identifier-placeholder'))
+                            ->required()
+                            ->rules(['regex:/^[a-zA-Z_]+$/']),
                         Textarea::make('description')
                             ->label(trans('filament-plugins::messages.plugins.form.description'))
                             ->placeholder(trans('filament-plugins::messages.plugins.form.description-placeholder'))
                             ->required(),
-                        ColorPicker::make('color')
-                            ->label(trans('filament-plugins::messages.plugins.form.color'))
-                            ->required(),
-                        IconPicker::make('icon')
-                            ->label(trans('filament-plugins::messages.plugins.form.icon'))
+                        FileUpload::make('logo')
+                            ->label(trans('filament-plugins::messages.plugins.form.logo'))
+                            ->directory('plugins/logos')
+                            ->visibility('public')
                             ->required()
                     ])
                     ->action(fn(array $data) => $this->createPlugin($data)),
@@ -204,7 +207,18 @@ class Plugins extends Page implements HasTable
 
     public function createPlugin(array $data)
     {
-        $checkIfPluginExists = Module::find(Str::of($data['name'])->camel()->ucfirst()->toString());
+        // 验证插件标识
+        if (!preg_match('/^[a-zA-Z_]+$/', $data['identifier'])) {
+            Notification::make()
+                ->title(trans('filament-plugins::messages.plugins.notifications.invalid_identifier.title'))
+                ->body(trans('filament-plugins::messages.plugins.notifications.invalid_identifier.body'))
+                ->danger()
+                ->send();
+            return;
+        }
+
+        $pluginIdentifier = Str::of($data['identifier'])->camel()->ucfirst()->toString();
+        $checkIfPluginExists = Module::find($pluginIdentifier);
         if ($checkIfPluginExists) {
             Notification::make()
                 ->title(trans('filament-plugins::messages.plugins.notifications.exists.title'))
@@ -214,18 +228,49 @@ class Plugins extends Page implements HasTable
             return;
         }
 
+        // Generate the plugin using PluginGenerator
         $generator = new PluginGenerator(
             $data['name'],
+            $data['identifier'],
             $data['description'],
-            $data['color'],
-            $data['icon']
+            $data['logo']
         );
         $generator->generate();
 
-        Notification::make()
-            ->title(trans('filament-plugins::messages.plugins.notifications.created.title'))
-            ->body(trans('filament-plugins::messages.plugins.notifications.created.body'))
-            ->success()
-            ->send();
+        // Move the logo file to the plugin directory
+        if (isset($data['logo'])) {
+            // Define paths
+            $storagePath = storage_path('app/public');
+            $pluginPath = base_path('plugins/' . $pluginIdentifier);
+
+            // Ensure the plugin directory exists
+            if (!File::exists($pluginPath)) {
+                File::makeDirectory($pluginPath, 0755, true);
+            }
+
+            // Get the original logo path
+            $originalLogoPath = $storagePath . '/' . $data['logo'];
+
+            // Move and rename the logo file
+            $newLogoPath = $pluginPath . '/logo.png';
+
+            if (File::exists($originalLogoPath)) {
+                File::move($originalLogoPath, $newLogoPath);
+
+                Notification::make()
+                    ->title(trans('filament-plugins::messages.plugins.notifications.imported.title'))
+                    ->body(trans('filament-plugins::messages.plugins.notifications.imported.body'))
+                    ->success()
+                    ->send();
+            } else {
+                Notification::make()
+                    ->title(trans('filament-plugins::messages.plugins.notifications.logo_failed.title'))
+                    ->body(trans('filament-plugins::messages.plugins.notifications.logo_failed.body'))
+                    ->danger()
+                    ->send();
+            }
+        }
+
+        $this->js('window.location.reload()');
     }
 }

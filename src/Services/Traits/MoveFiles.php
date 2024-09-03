@@ -13,8 +13,8 @@ trait MoveFiles
      */
     private function moveFiles(): void
     {
-        if (Module::find($this->name)) {
-            $modulePath = base_path('plugins/' . $this->name);
+        if (Module::find($this->identifier)) {
+            $modulePath = base_path('plugins/' . $this->identifier);
 
             File::copy($this->stubPath . '/publish/CHANGELOG.md', $modulePath . '/CHANGELOG.md');
             File::copy($this->stubPath . '/publish/LICENSE.md', $modulePath . '/LICENSE.md');

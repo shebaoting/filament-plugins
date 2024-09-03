@@ -14,7 +14,7 @@ trait GenerateReadMe
         //Generate Readme.md file
         $this->generateStubs(
             $this->stubPath . 'readme.stub',
-            base_path("plugins") . '/' . $this->name . '/README.md',
+            base_path("plugins") . '/' . $this->identifier . '/README.md',
             [
                 "name" => $this->name,
                 "title" => $this->title,
@@ -22,7 +22,7 @@ trait GenerateReadMe
             ],
             [
                 base_path("plugins"),
-                base_path("plugins") . "/" . $this->name,
+                base_path("plugins") . "/" . $this->identifier,
             ]
         );
     }

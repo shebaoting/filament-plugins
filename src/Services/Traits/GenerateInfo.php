@@ -13,34 +13,20 @@ trait GenerateInfo
      */
     private function generateInfo(): void
     {
-        if (Module::find($this->name)) {
-            $modulePath = module_path($this->name) . '/module.json';
+        if (Module::find($this->identifier)) {
+            $modulePath = module_path($this->identifier) . '/module.json';
             $module = json_decode(File::get($modulePath));
             $module->title = [];
-            $module->title['ar'] = $this->title;
+            $module->title['zh_CN'] = $this->title;
             $module->title['en'] = $this->title;
-            $module->title['gr'] = $this->title;
-            $module->title['de'] = $this->title;
-            $module->title['nl'] = $this->title;
-            $module->title['fr'] = $this->title;
-            $module->title['sp'] = $this->title;
             $module->description = [];
-            $module->description['ar'] = $this->description;
+            $module->description['zh_CN'] = $this->description;
             $module->description['en'] = $this->description;
-            $module->description['gr'] = $this->description;
-            $module->description['de'] = $this->description;
-            $module->description['nl'] = $this->description;
-            $module->description['fr'] = $this->description;
-            $module->description['sp'] = $this->description;
-            $module->color = $this->color;
-            $module->icon = $this->icon;
+
             $module->placeholder = "placeholder.webp";
             $module->type = "plugin";
             $module->version = "v1.0";
-
-            File::put($modulePath, json_encode($module, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
-
-            Module::find($this->name)->disable();
+            File::put($modulePath, json_encode($module, JSON_PRETTY_PRINT));
         }
     }
 }

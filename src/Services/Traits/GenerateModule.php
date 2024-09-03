@@ -8,7 +8,7 @@ trait GenerateModule
 {
     public function generateModule()
     {
-        Artisan::call('module:make ' . $this->name . ' --path=plugins');
+        Artisan::call('module:make ' . $this->identifier);
         sleep(3);
     }
 }
