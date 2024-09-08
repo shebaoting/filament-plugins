@@ -32,7 +32,6 @@ class PluginGenerator
         public string|null $title = null,
     ) {
         $this->title = $name;
-        $this->name = Str::of($name)->camel()->ucfirst()->toString();
         $this->identifier = Str::of($identifier)->camel()->ucfirst()->toString();
         $this->stubPath = __DIR__ . '/../../stubs/';
         $this->publish = __DIR__ . '/../../stubs/';

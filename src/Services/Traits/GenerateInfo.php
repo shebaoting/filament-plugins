@@ -19,13 +19,14 @@ trait GenerateInfo
             $module->title = [];
             $module->title['zh_CN'] = $this->title;
             $module->title['en'] = $this->title;
+            $module->identifier = $this->identifier; // 添加插件标识
             $module->description = [];
             $module->description['zh_CN'] = $this->description;
             $module->description['en'] = $this->description;
-
             $module->placeholder = "placeholder.webp";
             $module->type = "plugin";
             $module->version = "v1.0";
+            $module->logo = "logo.png"; // 添加 logo 字段
             File::put($modulePath, json_encode($module, JSON_PRETTY_PRINT));
         }
     }

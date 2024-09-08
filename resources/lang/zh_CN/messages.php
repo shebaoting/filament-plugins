@@ -7,8 +7,6 @@ return [
         'create' => '创建插件',
         'import' => '导入插件',
         'form' => [
-            'alias' => '插件名称',
-            'alias-placeholder' => '请输入插件名称',
             'name' => '插件名称',
             'name-placeholder' => '插件名称',
             'identifier' => '插件标识',

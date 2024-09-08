@@ -1,25 +1,15 @@
 <div class="grid grid-cols-1 md:grid-cols-3 gap-4 p-4">
+
     @foreach($records as $item)
     <div
         class="bg-white border border-gray-100 dark:border-gray-700 overflow-hidden dark:bg-gray-800 rounded-lg flex flex-col shadow-sm">
 
-        @if($item['placeholder'] !== 'placeholder.webp')
-        <div class="h-40 overflow-hidden">
-            <img class="bg-cover bg-center" onerror="this.onerror=null; this.src='{{url('placeholder.webp')}}'"
-                src="{{$item['placeholder']}}" />
+        <div class="overflow-hidden h-40">
+            <img class="w-full h-auto object-cover"
+                onerror="this.onerror=null; this.src='{{ route('plugins.logo', ['plugin' => $item['identifier']]) }}'"
+                src="{{ route('plugins.logo', ['plugin' => $item['identifier']]) }}" />
         </div>
-        @else
-        <div class="overflow-hidden flex flex-col rounded-t-lg justify-center items-center"
-            style="background-color: {{$item['color']}}; height: 150px;">
-            <div>
-                @if($item['icon'])
-                <x-icon name="{{$item['icon']}}" class="text-white w-12 h-16" />
-                @else
-                <x-heroicon-s-puzzle-piece class="text-white w-12 h-16" />
-                @endif
-            </div>
-        </div>
-        @endif
+
         <div class="flex justifiy-between gap-4 px-4 my-2">
             <div class="w-full">
                 <h1 class="font-bold">{{ json_decode($item['name'])->{app()->getLocale()} }}</h1>
