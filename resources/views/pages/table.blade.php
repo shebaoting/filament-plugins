@@ -15,7 +15,7 @@
                 <h1 class="font-bold">{{ json_decode($item['name'])->{app()->getLocale()} }}</h1>
             </div>
             <div>
-                <h1>{{ $item['version'] }}</h1>
+                <x-filament::badge class="w-10">{{ $item['version'] }}</x-filament::badge>
             </div>
         </div>
         <div class="h-30 px-4">
