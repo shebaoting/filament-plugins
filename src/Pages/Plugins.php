@@ -252,7 +252,7 @@ class Plugins extends Page implements HasTable
             $originalLogoPath = $storagePath . '/' . $data['logo'];
 
             // Move and rename the logo file
-            $newLogoPath = $pluginPath . '/logo.png';
+            $newLogoPath = $pluginPath . '/logo.svg';
 
             if (File::exists($originalLogoPath)) {
                 File::move($originalLogoPath, $newLogoPath);

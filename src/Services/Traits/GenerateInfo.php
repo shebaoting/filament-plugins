@@ -26,7 +26,7 @@ trait GenerateInfo
             $module->placeholder = "placeholder.webp";
             $module->type = "plugin";
             $module->version = "v1.0";
-            $module->logo = "logo.png"; // 添加 logo 字段
+            $module->logo = "logo.svg"; // 添加 logo 字段
             File::put($modulePath, json_encode($module, JSON_PRETTY_PRINT));
         }
     }
