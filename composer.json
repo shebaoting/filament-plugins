@@ -1,5 +1,6 @@
 {
     "name": "shebaoting/filament-plugins",
+    "version": "1.0.0",
     "type": "library",
     "description": "Manage your modules as a plugin system with plugin generator",
     "keywords": [
