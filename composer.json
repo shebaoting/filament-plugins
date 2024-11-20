@@ -1,0 +1,53 @@
+{
+    "name": "shebaoting/filament-plugins",
+    "type": "library",
+    "description": "Manage your modules as a plugin system with plugin generator",
+    "keywords": [
+        "php",
+        "laravel",
+        "template",
+        "modules",
+        "HMVC",
+        "filament",
+        "plugins",
+        "generator"
+    ],
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Shebaoting\\FilamentPlugins\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Shebaoting\\FilamentPlugins\\FilamentPluginsServiceProvider"
+            ]
+        }
+    },
+    "authors": [
+        {
+            "name": "Fady Mondy",
+            "email": "info@3x1.io"
+        }
+    ],
+    "require": {
+        "php": "^8.1|^8.2",
+        "tomatophp/console-helpers": "^1.1",
+        "filament/filament": "^3.0.0",
+        "filament/notifications": "^3.0.0",
+        "nwidart/laravel-modules": "^11.0",
+        "tomatophp/filament-icons": "*@dev",
+        "calebporzio/sushi": "*"
+    },
+    "config": {
+        "allow-plugins": {
+            "wikimedia/composer-merge-plugin": true
+        }
+    }
+}
