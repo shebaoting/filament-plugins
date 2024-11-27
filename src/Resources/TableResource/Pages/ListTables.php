@@ -15,7 +15,10 @@ class ListTables extends ListRecords
     public function mount(): void
     {
         if (!request()->has('module')) {
-            $this->redirect(route('filament.' . filament()->getCurrentPanel()->getId() . '.pages.plugins'));
+            $this->redirect(route(
+                'filament.' . filament()->getCurrentPanel()->getId() . '.pages.plugins',
+                ['tenant' => filament()->getTenant()->id ?? null]
+            ));
         }
 
         if (session()->has('current_module')) {
@@ -31,7 +34,7 @@ class ListTables extends ListRecords
         return [
             Actions\Action::make('create')
                 ->label(trans('filament-plugins::messages.tables.actions.create'))
-                ->url(route('filament.' . filament()->getCurrentPanel()->getId() . '.resources.tables.create', ['module' => request()->get('module')]))
+                ->url(route('filament.' . filament()->getCurrentPanel()->getId() . '.resources.tables.create', ['module' => request()->get('module'), 'tenant' => filament()->getTenant()->id ?? null]))
         ];
     }
 }

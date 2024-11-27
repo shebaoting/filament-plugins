@@ -4,6 +4,7 @@ namespace Shebaoting\FilamentPlugins\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Shebaoting\FilamentPlugins\Services\CRUDGenerator;
+use App\Models\Team;
 
 /**
  * @property integer $id
@@ -50,5 +51,10 @@ class Table extends Model
     public function getTable()
     {
         return config('filament-plugins.database_prefix') ? config('filament-plugins.database_prefix') . '_tables' : 'tables';
+    }
+
+    public function team()
+    {
+        return $this->belongsTo(Team::class); // 假设你的租户模型是 Team
     }
 }

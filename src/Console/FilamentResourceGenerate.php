@@ -34,9 +34,22 @@ class FilamentResourceGenerate extends Command
 
     public function handle(): int
     {
-        $moduleName = $this->argument('module') ?? text('In which Module should we create the resource?', 'e.g Blog', required: true);
+        $moduleName = $this->argument('module') ?? select(
+            label: 'In which Module should we create the resource?',
+            options: Module::toCollection()->map(function ($module) {
+                return $module->getName();
+            })->toArray(),
+            required: true
+        );
+
         $moduleStudlyName = str($moduleName)->studly()->toString();
         $module = Module::find($moduleName);
+
+        if (!$module) {
+            $this->components->error("Module '{$moduleName}' not found.");
+            return static::FAILURE;
+        }
+
         $modelNamespace = $this->option('model-namespace') ?? $module->appNamespace('Models');
         $modelNamespace = str($modelNamespace)->rtrim('\\')->toString();
 
@@ -100,7 +113,6 @@ class FilamentResourceGenerate extends Command
             $resourceDirectories[] = $modulePath . '/app/Filament/' . Str::studly($panel->getId()) . '/Resources';
             $resourceNamespaces[] = $module->appNamespace() . '\\Filament\\' . Str::studly($panel->getId()) . '\\Resources';
         }
-
 
         $namespace = (count($resourceNamespaces) > 1) ?
             select(

@@ -13,11 +13,12 @@ trait GeneratePage
             $this->stubPath . 'page.stub',
             base_path("plugins") . '/' . $this->identifier . '/app/Filament/Pages/' . $this->identifier . 'Page.php',
             [
-                "namespace" => "Modules\\" . $this->identifier . "\\Filament\\Pages",
+                "namespace" => "Plugins\\" . $this->identifier . "\\Filament\\Pages",
                 "view" => $module->getLowerName() . "::index",
                 "title" => $this->title,
                 "identifier" => $this->identifier,
                 "name" => $this->identifier . 'Page',
+                "icon" => 'heroicon-o-bell-snooze',
             ],
             [
                 base_path("plugins") . "/" . $this->identifier . "/app/Filament",

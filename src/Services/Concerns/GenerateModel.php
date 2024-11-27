@@ -15,15 +15,21 @@ trait GenerateModel
         $modelName = $this->modelName;
         $filePath = "";
 
-        if ($this->moduleName) {
-            if (file_exists(base_path('plugins/' . $this->moduleName) . '/app/Models/' . $this->modelName . '.php')) {
+        if ($this->identifier) {
+            $modulePath = base_path('plugins/' . $this->identifier);
+            $modelPath = $modulePath . '/app/Models/' . $this->modelName . '.php';
+
+            if (file_exists($modelPath)) {
                 $exists = true;
             }
 
-            $namespace = "Modules\\{$this->moduleName}\\Models";
-            $filePath = base_path('plugins/' . $this->moduleName) . '/app/Models/' . $this->modelName . '.php';
+            $namespace = "Plugins\\{$this->identifier}\\Models";
+            $filePath = $modelPath;
         } else if (file_exists(app_path("Models/{$this->modelName}.php"))) {
             $exists = true;
+            $namespace = "App\\Models";
+            $filePath = app_path("Models/{$this->modelName}.php");
+        } else {
             $namespace = "App\\Models";
             $filePath = app_path("Models/{$this->modelName}.php");
         }
@@ -38,12 +44,12 @@ trait GenerateModel
                     "table" => $this->tableName,
                     "fillable" => $this->getFillable(),
                     "docblock" => $this->getDocBlock(),
-                    "hidden" => $this->getHidden() ? 'protected $hidden = [' . "\n" . $this->getHidden()  . '' . "\n" . '    ];' : "",
-                    "casts" => $this->getCasts() ? 'protected $casts = [' . "\n" . $this->getCasts() . '' . "\n" . '    ];' : "",
+                    "hidden" => $this->getHidden() ? 'protected $hidden = [' . "\n" . $this->getHidden()  . "\n" . '    ];' : "",
+                    "casts" => $this->getCasts() ? 'protected $casts = [' . "\n" . $this->getCasts() . "\n" . '    ];' : "",
                     "methods" => $this->getMethods(),
                 ],
                 [
-                    $this->moduleName ? base_path('plugins/' . $this->moduleName) . '/app/Models/' : app_path("Models")
+                    $this->identifier ? base_path('plugins/' . $this->identifier) . '/app/Models/' : app_path("Models")
                 ]
             );
         }
@@ -58,6 +64,8 @@ trait GenerateModel
                     $block[] = '* @property \App\Models\Account $' . $column['name'];
                 } else if (str($column['relation']['model'])->contains('User') && class_exists(\App\Models\User::class)) {
                     $block[] = '* @property \App\Models\User $' . $column['name'];
+                } else if (str($column['relation']['model'])->contains('Team') && class_exists(\App\Models\Team::class)) {
+                    $block[] = '* @property \App\Models\Team $' . $column['name'];
                 } else {
                     $block[] = '* @property ' . str($column['relation']['model'])->remove('::class') . ' $' . $column['name'];
                 }
@@ -75,15 +83,23 @@ trait GenerateModel
         $methods = [];
         foreach ($this->cols as $key => $column) {
             if ($column['type'] === 'relation') {
-                $method = 'public function ' . str($column['name'])->remove('_id')->camel() . '()' . "\n";
+                $methodName = str($column['name'])->remove('_id')->camel();
+                $method = 'public function ' . $methodName . '()' . "\n";
                 $method .= '    {' . "\n";
+
                 if (str($column['relation']['model'])->contains('Account') && class_exists(\App\Models\Account::class)) {
                     $method .= '        return $this->belongsTo(\App\Models\Account::class);' . "\n";
-                } else if (str($column['relation']['model'])->contains('User') && class_exists(\App\Models\User::class)) {
+                } elseif (str($column['relation']['model'])->contains('User') && class_exists(\App\Models\User::class)) {
                     $method .= '        return $this->belongsTo(\App\Models\User::class);' . "\n";
+                } elseif (str($column['relation']['model'])->contains('Team') && class_exists(\App\Models\Team::class)) {
+                    // 如果 Team 模型位于 App\Models
+                    $method .= '        return $this->belongsTo(\App\Models\Team::class);' . "\n";
                 } else {
-                    $method .= '        return $this->belongsTo(' . $column['relation']['model'] . '::class);' . "\n";
+                    // 默认情况，使用 App\Models 下的模型
+                    $modelNamespace = '\\App\\Models\\' . $column['relation']['model'];
+                    $method .= '        return $this->belongsTo(' . $modelNamespace . '::class);' . "\n";
                 }
+
                 $method .= '    }';
 
                 $methods[] = $method;

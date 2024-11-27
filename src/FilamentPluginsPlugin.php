@@ -34,6 +34,7 @@ class FilamentPluginsPlugin implements Plugin
         foreach ($plugins as $plugin) {
             if ($plugin->type === 'plugin' && in_array($plugin->module_name, $this->modules)) {
                 $module = Module::find($plugin->module_name);
+                // dd($module->isEnabled());
                 if ($module->isEnabled()) {
                     $checkIfThereIsDirectoryForThisPanel = File::exists($module->appPath('Filament' . DIRECTORY_SEPARATOR . Str::studly($panel->getId())));
                     if ($checkIfThereIsDirectoryForThisPanel && $this->discoverCurrentPanelOnly) {

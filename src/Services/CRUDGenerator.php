@@ -78,6 +78,7 @@ class CRUDGenerator
         private ?Table $table = null,
         private string | null $tableName = null,
         private string | bool | null $moduleName = null,
+        private ?string $identifier = null, // 新增的参数
         private bool $isBuilder = false,
         private array $fields = [],
         private bool $module = false,
@@ -92,10 +93,10 @@ class CRUDGenerator
         private bool $json  = false,
         private bool $menu  = false,
     ) {
-        if (!$this->tableName) {
+        if (!$this->tableName && $this->table) {
             $this->tableName = $this->table->name;
         }
-        if (!$this->moduleName) {
+        if (!$this->moduleName && $this->table) {
             $this->moduleName = $this->table->module;
         }
         $this->modelName = Str::ucfirst(Str::singular(Str::camel($this->tableName)));

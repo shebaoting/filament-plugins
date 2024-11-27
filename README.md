@@ -37,7 +37,7 @@ By default the module classes are not loaded automatically. You can autoload you
     },
     "merge-plugin": {
         "include": [
-            "Modules/*/composer.json"
+            "plugins/*/composer.json"
         ]
     }
 },

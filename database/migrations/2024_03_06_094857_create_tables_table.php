@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('module');
             $table->string('name')->index()->unique();
             $table->string('comment')->nullable();
-
+            $table->unsignedBigInteger('team_id')->nullable()->index();
             //Options
             $table->boolean('timestamps')->default(true)->nullable();
             $table->boolean('soft_deletes')->default(false)->nullable();
