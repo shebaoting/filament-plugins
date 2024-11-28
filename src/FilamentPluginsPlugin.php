@@ -28,70 +28,67 @@ class FilamentPluginsPlugin implements Plugin
     {
         $plugins = \Shebaoting\FilamentPlugins\Models\Plugin::all();
         $useClusters = config('filament-plugins.clusters.enabled', false);
+
         if (!count($this->modules) && $this->autoDiscoverModules) {
             $this->modules = Module::all();
         }
+
         foreach ($plugins as $plugin) {
             if ($plugin->type === 'plugin' && in_array($plugin->module_name, $this->modules)) {
                 $module = Module::find($plugin->module_name);
-                // dd($module->isEnabled());
+
                 if ($module->isEnabled()) {
-                    $checkIfThereIsDirectoryForThisPanel = File::exists($module->appPath('Filament' . DIRECTORY_SEPARATOR . Str::studly($panel->getId())));
-                    if ($checkIfThereIsDirectoryForThisPanel && $this->discoverCurrentPanelOnly) {
-                        $panel->discoverPages(
-                            in: $module->appPath('Filament' . DIRECTORY_SEPARATOR .  Str::studly($panel->getId()) . DIRECTORY_SEPARATOR . 'Pages'),
-                            for: $module->appNamespace('\\Filament\\' . Str::studly($panel->getId()) . '\\Pages')
-                        );
-                        $panel->discoverResources(
-                            in: $module->appPath('Filament' . DIRECTORY_SEPARATOR .  Str::studly($panel->getId()) . DIRECTORY_SEPARATOR . 'Resources'),
-                            for: $module->appNamespace('\\Filament\\' . Str::studly($panel->getId()) . '\\Resources')
-                        );
-                        $panel->discoverWidgets(
-                            in: $module->appPath('Filament' . DIRECTORY_SEPARATOR .  Str::studly($panel->getId()) . DIRECTORY_SEPARATOR . 'Widgets'),
-                            for: $module->appNamespace('\\Filament\\' . Str::studly($panel->getId()) . '\\Widgets')
-                        );
+                    // 读取module.json
+                    $moduleConfig = json_decode(File::get($module->getPath() . '/module.json'), true);
+                    $panelId = $panel->getId();
 
-                        $panel->discoverLivewireComponents(
-                            in: $module->appPath('Livewire'),
-                            for: $module->appNamespace('\\Livewire')
-                        );
+                    // 检查当前面板的配置
+                    $panelConfig = $moduleConfig['panels'][$panelId] ?? null;
 
-                        if ($useClusters) {
-                            $path = $module->appPath('Filament' . DIRECTORY_SEPARATOR .  Str::studly($panel->getId()) . DIRECTORY_SEPARATOR . 'Clusters');
-                            $namespace = $module->appNamespace('\\Filament\\' . Str::studly($panel->getId()) . '\\Clusters');
-                            $panel->discoverClusters(
-                                in: $path,
-                                for: $namespace,
-                            );
+                    if ($panelConfig) {
+                        // 只注册当前面板配置的资源
+                        if (!empty($panelConfig['resources'])) {
+                            $resourceBasePath = $module->appPath('Filament/Resources');
+                            $resourceBaseNamespace = $module->appNamespace('Filament\\Resources');
+
+                            $panel
+                                ->discoverResources(
+                                    $resourceBasePath,
+                                    $resourceBaseNamespace,
+                                    function (string $class) use ($panelConfig) {
+                                        return in_array(class_basename($class), $panelConfig['resources']);
+                                    }
+                                );
                         }
-                    } else {
-                        $panel->discoverPages(
-                            in: $module->appPath('Filament' . DIRECTORY_SEPARATOR . 'Pages'),
-                            for: $module->appNamespace('\\Filament\\Pages')
-                        );
-                        $panel->discoverResources(
-                            in: $module->appPath('Filament' . DIRECTORY_SEPARATOR . 'Resources'),
-                            for: $module->appNamespace('\\Filament\\Resources')
-                        );
-                        $panel->discoverWidgets(
-                            in: $module->appPath('Filament' . DIRECTORY_SEPARATOR . 'Widgets'),
-                            for: $module->appNamespace('\\Filament\\Widgets')
-                        );
 
-                        $panel->discoverLivewireComponents(
-                            in: $module->appPath('Livewire'),
-                            for: $module->appNamespace('\\Livewire')
-                        );
+                        // 只注册当前面板配置的页面
+                        if (!empty($panelConfig['pages'])) {
+                            $pageBasePath = $module->appPath('Filament/Pages');
+                            $pageBaseNamespace = $module->appNamespace('Filament\\Pages');
 
-                        if ($useClusters) {
-                            $path = $module->appPath('Filament' . DIRECTORY_SEPARATOR . 'Clusters');
-                            $namespace = $module->appNamespace('\\Filament\\Clusters');
-                            $panel->discoverClusters(
-                                in: $path,
-                                for: $namespace,
-                            );
+                            $panel
+                                ->discoverPages(
+                                    $pageBasePath,
+                                    $pageBaseNamespace,
+                                    function (string $class) use ($panelConfig) {
+                                        return in_array(class_basename($class), $panelConfig['pages']);
+                                    }
+                                );
                         }
                     }
+
+                    // 注册其他组件
+                    $panel
+                        ->discoverWidgets(
+                            $module->appPath('Filament/Widgets'),
+                            $module->appNamespace('\\Filament\\Widgets')
+                        );
+
+                    $panel
+                        ->discoverLivewireComponents(
+                            $module->appPath('Livewire'),
+                            $module->appNamespace('\\Livewire')
+                        );
                 }
             }
         }
