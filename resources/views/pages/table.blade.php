@@ -37,16 +37,6 @@
         <p class="text-sm"> {{ json_decode($item['description'])->{app()->getLocale()} }}</p>
         <ul class="mt-4 flex flex-wrap gap-2 text-gray-500">
             @if($item['type'] !== 'lib')
-            @if((bool)config('filament-plugins.allow_generator'))
-            <x-filament::icon-button :tooltip="trans('filament-plugins::messages.plugins.actions.generate')" tag="a"
-                href="{{route('filament.'.filament()->getCurrentPanel()->getId().'.resources.tables.index', ['module'=>$item->module_name,
-                        'tenant' => filament()->getTenant()->id ?? null
-                        ])}}">
-                <x-slot name="icon">
-                    <x-heroicon-s-cog class="w-5 h-5" />
-                </x-slot>
-            </x-filament::icon-button>
-            @endif
             @if((bool)config('filament-plugins.allow_toggle'))
             @if($item->active)
             {{ ($this->disableAction)(['item' => $item]) }}

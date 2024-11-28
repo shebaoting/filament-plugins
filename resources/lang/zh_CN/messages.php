@@ -56,58 +56,5 @@ return [
                 'body' => '插件已成功导入。'
             ]
         ]
-    ],
-    'tables' => [
-        'title' => '数据表',
-        'create' => '创建数据表',
-        'edit' => '编辑表',
-        'columns' => '数据表字段',
-        'form' => [
-            'name' => '表名称',
-            'type' => '类型',
-            'nullable' => '可空',
-            'foreign' => '外键',
-            'foreign_table' => '外键表',
-            'foreign_col' => '外键列',
-            'foreign_on_delete_cascade' => '删除时级联',
-            'auto_increment' => '自增',
-            'primary' => '主键',
-            'unsigned' => '无符号',
-            'default' => '默认',
-            'unique' => '唯一',
-            'index' => '索引',
-            'lenth' => '长度',
-            'migrated' => '已迁移',
-            'generated' => '已生成',
-            'created_at' => '创建时间',
-            'updated_at' => '更新时间',
-        ],
-        'actions' => [
-            'create' => '创建',
-            'migrate' => '迁移',
-            'generate' => '生成',
-            'columns' => '创建字段',
-            'add-id' => '创建ID字段',
-            'add-timestamps' => '创建时间字段',
-            'add-softdeletes' => '创建软删除字段',
-        ],
-        'notifications' => [
-            'migrated' => [
-                'title' => '成功',
-                'body' => '数据表已成功迁移。'
-            ],
-            'not-migrated' => [
-                'title' => '错误',
-                'body' => '数据表迁移失败。'
-            ],
-            'generated' => [
-                'title' => '成功',
-                'body' => '数据表已成功生成。'
-            ],
-            'model' => [
-                'title' => '错误',
-                'body' => '找不到模型，请先生成模型。'
-            ]
-        ]
     ]
 ];

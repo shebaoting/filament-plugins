@@ -95,9 +95,6 @@ class FilamentPluginsPlugin implements Plugin
 
         if ($this->useUI) {
             $panel
-                ->resources([
-                    TableResource::class
-                ])
                 ->pages([
                     Plugins::class
                 ]);
