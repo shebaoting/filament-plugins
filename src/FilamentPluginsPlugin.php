@@ -50,30 +50,16 @@ class FilamentPluginsPlugin implements Plugin
                         if (!empty($panelConfig['resources'])) {
                             $resourceBasePath = $module->appPath('Filament/Resources');
                             $resourceBaseNamespace = $module->appNamespace('Filament\\Resources');
-
-                            $panel
-                                ->discoverResources(
-                                    $resourceBasePath,
-                                    $resourceBaseNamespace,
-                                    function (string $class) use ($panelConfig) {
-                                        return in_array(class_basename($class), $panelConfig['resources']);
-                                    }
-                                );
+                            // 移除第三个参数（过滤函数）
+                            $panel->discoverResources($resourceBasePath, $resourceBaseNamespace);
                         }
 
                         // 只注册当前面板配置的页面
                         if (!empty($panelConfig['pages'])) {
                             $pageBasePath = $module->appPath('Filament/Pages');
                             $pageBaseNamespace = $module->appNamespace('Filament\\Pages');
-
-                            $panel
-                                ->discoverPages(
-                                    $pageBasePath,
-                                    $pageBaseNamespace,
-                                    function (string $class) use ($panelConfig) {
-                                        return in_array(class_basename($class), $panelConfig['pages']);
-                                    }
-                                );
+                            // 移除第三个参数（过滤函数）
+                            $panel->discoverPages($pageBasePath, $pageBaseNamespace);
                         }
                     }
 
